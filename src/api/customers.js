@@ -18,7 +18,7 @@ router.get("/customers", (req, res) => {
             res.json(err.message)
         }
         else{
-            res.json(results)
+            res.json(results.rows)
         }
     })    
 })
@@ -27,12 +27,12 @@ router.get("/customers", (req, res) => {
 // get a single customer
 router.get("/customers/:id", (req, res) => {
     const id = req.params.id
-    conn.query("SELECT * FROM customers WHERE id = ?", [id], (err, results, field) => {
+    conn.query(`SELECT * FROM customers WHERE id=${id} `, (err, results, field) => {
         if(err){
             res.json(err.message)
         }
         else{
-            res.json(results)
+            res.json(results.rows)
         }
     })    
 })
